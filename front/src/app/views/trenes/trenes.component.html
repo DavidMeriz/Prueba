@@ -1,0 +1,61 @@
+<div class="card shadow mb-5">
+    <div class="card-header py-4">
+      <h6 class="m-0 font-weight-bold text-primary">{{ title }}</h6>
+      
+      <button class="btn btn-primary" routerLink="/nuevo-tren">Nuevo</button>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          class="table table-bordered"
+          id="dataTable"
+          width="100%"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Estacion</th>
+              <th>Modelo</th>
+              <th>Capacidad_pasajeros</th>
+              <th>Fecha_fabricacion</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (tren of trenes; track tren.ID_tren; let i =
+            $index) {
+            <tr>
+              <td>{{ i + 1 }}</td>
+              <td>{{ tren.ID_estacion }}</td>
+              <td>{{ tren.Modelo }}</td>
+              <td>{{ tren.Capacidad_pasajeros }}</td>
+              <td>{{ tren.Fecha_fabricacion }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-outline-warning"
+                  routerLink="/editar-tren/{{ tren.ID_tren }}"
+                >
+                  Editar
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-danger"
+                  (click)="eliminar(tren.ID_tren)"
+                >
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+            }@empty {
+            <tr>
+              <td colspan="5">No existen registros</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <button (click)="alerta()">mensaje</button> 

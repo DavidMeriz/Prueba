@@ -1,0 +1,55 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">{{ title }}</h6>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="estacion" (ngSubmit)="grabar()">
+        <div class="mb-2">
+          <label for="Nombre">Nombre Estacion</label>
+          <input type="text" class="form-control" formControlName="Nombre" />
+          @if (estacion.invalid && (estacion.dirty || estacion.touched)) {
+          <div class="alert">
+            @if (estacion.errors?.["required"]) {
+            <div class="ng-invalid">Nombres es requerido</div>
+            }
+          </div>
+          }
+        </div>
+        <div class="mb-2">
+          <label for="Ciudad">Ciudad</label>
+          <input type="text" class="form-control" formControlName="Ciudad" />
+          @if (estacion.invalid && (estacion.dirty || estacion.touched)) {
+          <div class="alert">
+            @if (estacion.errors?.["required"]) {
+            <div class="ng-invalid">La Ciudad  es requerido</div>
+           }
+          </div>
+          }
+        </div>
+        <div class="mb-2">
+          <label for="Capacidad">Capacidad</label>
+          <input type="text" class="form-control" formControlName="Capacidad" />
+          @if (estacion.invalid && (estacion.dirty || estacion.touched)) {
+          <div class="alert">
+            @if (estacion.errors?.["required"]) {
+            <div class="ng-invalid">La Capacidad  es requerida</div>
+           }
+          </div>
+          }
+        </div>
+      
+        <div class="mb-2">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!estacion.valid"
+          >
+            Grabar
+          </button>
+          <button class="btn btn-secondary" routerLink="/estaciones">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>

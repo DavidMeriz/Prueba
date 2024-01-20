@@ -1,0 +1,70 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">{{ title }}</h6>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="tren" (ngSubmit)="grabar()">
+        <div class="mb-2">
+          <label for="ID_estacion">Nombre</label>
+          <select class="form-control" formControlName="ID_estacion">
+          <option value="0">SELECCIONE UNA ESTACION</option>
+<option
+            *ngFor="let estacion of listaestaciones"
+          [value] = "estacion.ID_estacion"
+          >
+          {{estacion.Nombre}}
+        
+        </option>
+      </select>
+          
+        </div>
+        <div class="mb-2">
+          <label for="Modelo">Modelo</label>
+          <input type="text" class="form-control" formControlName="Modelo" />
+          @if (tren.invalid && (tren.dirty || tren.touched)) {
+          <div class="alert">
+            @if (tren.errors?.["required"]) {
+            <div class="ng-invalid">El Modelo  es requerido</div>
+           }
+          </div>
+          }
+        </div>
+        <div class="mb-2">
+          <label for="Capacidad_pasajeros">Capacidad de Pasajeros</label>
+          <input type="text" class="form-control" formControlName="Capacidad_pasajeros" />
+          @if (tren.invalid && (tren.dirty || tren.touched)) {
+          <div class="alert">
+            @if (tren.errors?.["required"]) {
+            <div class="ng-invalid">La Capacidad de Pasajeros  es requerida</div>
+           }
+          </div>
+          }
+        </div>
+        <div class="mb-2">
+          <label for="Fecha_fabricacion">Fecha de Fabricación</label>
+          <input type="date" class="form-control" formControlName="Fecha_fabricacion" />
+          @if (tren.invalid && (tren.dirty || tren.touched)) {
+              <div class="alert">
+                  @if (tren.errors?.["required"]) {
+                      <div class="ng-invalid">La Fecha de Fabricación es requerida</div>
+                  }
+              </div>
+          }
+      </div>
+      
+      
+        <div class="mb-2">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!tren.valid"
+          >
+            Grabar
+          </button>
+          <button class="btn btn-secondary" routerLink="/trenes">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
